@@ -19,6 +19,12 @@ class Book(models.Model):
     def __str__(self) -> str:
         return self.title
     
+    def display_genre(self):
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = 'Genre'
+
+    
     def get_absolute_url(self) -> str:
         return reverse('book-detail', args=[str(self.id)])
 
